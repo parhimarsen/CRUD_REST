@@ -15,32 +15,35 @@ namespace Task1_2.Controllers
 
         // GET api/accounts
         [Route("")]
-        public IEnumerable<Account> GetAllClients()
+        public IEnumerable<Account> GetAllAccounts()
         {
             return repository.accounts.GetAllAccounts();
         }
 
         // GET api/clients/1
         [Route("{accountId:int}")]
-        public Account GetClient(int accountId)
+        public Account GetAccount(int accountId)
         {
             return repository.accounts.GetAccount(accountId);
         }
 
         // POST api/
-        public Account PostClient(Account account)
+        [Route("account")]
+        public Account PostAccount(Account account)
         {
             return repository.accounts.CreateAccount(account);
         }
 
         // PUT api/
-        public bool PutClient(Account account)
+        [Route("account")]
+        public bool PutAccount(Account account)
         {
             return repository.accounts.UpdateAccount(account);
         }
 
         // DELETE api/
-        public void DeleteClient(int accountId)
+        [Route("account/{accountId:int}")]
+        public void DeleteAccount(int accountId)
         {
             repository.accounts.RemoveAccount(accountId);
         }
