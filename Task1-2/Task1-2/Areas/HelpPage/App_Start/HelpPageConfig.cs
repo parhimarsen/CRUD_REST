@@ -49,7 +49,7 @@ namespace Task1_2.Areas.HelpPage
             // constructors) or for which you prefer to use non-default property values. Line below provides a fallback
             // since automatic handling will fail and GeneratePageResult handles only a single type.
 #if Handle_PageResultOfT
-            config.GetHelpPageSampleGenerator().SampleObjectFactories.Add(GeneratePageResult);
+            config.GetHelpPageSampleGenerator().SampleObjectFactories.CreateClient(GeneratePageResult);
 #endif
 
             // Extend the following to use a preset object directly as the sample for all actions that support a media
@@ -68,12 +68,12 @@ namespace Task1_2.Areas.HelpPage
             //config.SetSampleRequest("1234", new MediaTypeHeaderValue("text/plain"), "Values", "Put");
 
             //// Uncomment the following to use the image on "../images/aspNetHome.png" directly as the response sample for media type "image/png"
-            //// on the controller named "Values" and action named "Get" with parameter "id".
-            //config.SetSampleResponse(new ImageSample("../images/aspNetHome.png"), new MediaTypeHeaderValue("image/png"), "Values", "Get", "id");
+            //// on the controller named "Values" and action named "GetClient" with parameter "id".
+            //config.SetSampleResponse(new ImageSample("../images/aspNetHome.png"), new MediaTypeHeaderValue("image/png"), "Values", "GetClient", "id");
 
             //// Uncomment the following to correct the sample request when the action expects an HttpRequestMessage with ObjectContent<string>.
-            //// The sample will be generated as if the controller named "Values" and action named "Get" were having string as the body parameter.
-            //config.SetActualRequestType(typeof(string), "Values", "Get");
+            //// The sample will be generated as if the controller named "Values" and action named "GetClient" were having string as the body parameter.
+            //config.SetActualRequestType(typeof(string), "Values", "GetClient");
 
             //// Uncomment the following to correct the sample response when the action returns an HttpResponseMessage with ObjectContent<string>.
             //// The sample will be generated as if the controller named "Values" and action named "Post" were returning a string.
@@ -88,7 +88,7 @@ namespace Task1_2.Areas.HelpPage
                 Type openGenericType = type.GetGenericTypeDefinition();
                 if (openGenericType == typeof(PageResult<>))
                 {
-                    // Get the T in PageResult<T>
+                    // GetClient the T in PageResult<T>
                     Type[] typeParameters = type.GetGenericArguments();
                     Debug.Assert(typeParameters.Length == 1);
 

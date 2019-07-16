@@ -1,0 +1,34 @@
+﻿@using System.Web.UI.WebControls
+@model Task1_2.Models.UnitOfWork
+
+<div class="panel-heading">
+    Все клиенты
+</div>
+<div class="panel-body">
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>List of Accounts</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var client in Model.clients.GetAllClients())
+            {
+                <tr>
+                    <td>@client.ClientId</td>
+                    <td>@client.Name</td>
+                    <td>
+                        <select>
+                            @foreach (var accounts in Model.accounts.GetAccountsOfClient(Convert.ToInt16(client.ClientId)))
+                            {
+                                <option>@accounts.NumberOfAccount</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
